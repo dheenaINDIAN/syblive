@@ -1,0 +1,25 @@
+<table>
+<%= form_for @user_profile do |f| %>
+<%= @user_profile.errors.full_messages.first if @user_profile.errors.any? %><br/>
+<tr>
+  <td><%= f.label :profile_name %>:</td>
+  <td><%= f.text_field :profile_name %></td>
+</tr>
+
+<tr>
+  <td><%= f.label :user_id %>:</td>
+  <td><%= text_field_tag :user_id, current_user.id %></td>
+</tr>
+
+<tr>
+  <th><link_to 'Connect facebook','/auth/facebook'></th>
+  <th>Connect Twitter</th>
+  <th>Connect Youtube</th>
+</tr>
+
+<tr>
+  <td><%= f.submit %></td>
+</tr>
+
+<% end %>
+  </table>

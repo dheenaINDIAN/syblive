@@ -1,6 +1,11 @@
 Zatfish::Application.routes.draw do
+  get "home/dashboard"
+  match "/home/create_user_profile"=> "home#create_user_profile",:as=>'user_profile'
+  match "/home/new_user_profile"=> "home#new_user_profile"
   #devise_for :users
-  
+  match '/auth/:provider/callback'  => 'authorization#create'
+  match '/auth/failure'             => 'authorization#failure'
+
   devise_for :users, :controllers => {:registrations => "devise/registrations"}
 
   # The priority is based upon order of creation:
@@ -52,7 +57,7 @@ Zatfish::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+   root :to => 'home#dashboard'
 
   # See how all your routes lay out with "rake routes"
 

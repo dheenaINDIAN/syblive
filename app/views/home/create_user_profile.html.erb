@@ -1,0 +1,30 @@
+<table>
+<%= form_for '/home/create_user_profile' do |f| %>
+<tr>
+<%= @user_profile.errors.full_messages.first if @user_profile.errors.any? %>
+</tr>
+<tr>
+  <td><%= f.label :profile_name %>:</td>
+  <td><%= f.text_field :profile_name %></td>
+  
+</tr>
+<tr>
+  <td><%= f.label :user_id %>:</td>
+  <td><%= text_field_tag :user_id, current_user.id %></td>
+</tr>
+<tr>
+  <td>Connect Facebook</td>
+</tr>
+<tr>
+  <td>Connect Twitter</td>
+</tr>
+<tr>
+  <td>Connect Youtube</td>
+</tr>
+<tr>
+  <td><%= f.submit %></td>
+</tr>
+
+
+<% end %>
+  </table>

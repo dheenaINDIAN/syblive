@@ -1,0 +1,7 @@
+<h3>User Profile</h3>
+
+<%@current_user_profile && @current_user_profile.each do |up|%>
+<%= up.profile_name%><br/>
+<%end%>
+<br/>
+<%=link_to 'Create New Profile',:action=>'new_user_profile'%>
