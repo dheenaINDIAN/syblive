@@ -9,5 +9,39 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
+ 
  */
+ 
+ .sign-up,.Sign-In{
+	width:400px;
+	margin:10px auto;
+	border:1px solid #333;
+	 padding: 10px 0 15px 16px;
+	 overflow:hidden;
+	}
+.sign-up label,.Sign-In label{float:left;width:150px;margin:10px 0px 10px 0px;}	
+.sign-up input,.Sign-In label[type="text"],.sign-up input[type="password"],.Sign-In input[type="password"]{float:left;width:200px;margin:10px 0px 10px 0px;}
+.sign-up input[type="text"].error,.sign-up input[type="password"].error{border:1px solid #FF0000;}
+.sign-up .field_with_errors label{margin-top:10px;}
+span.hint{clear:both;display:block;width:248px;float:right;color:#333;font-size:12px;
+    font-style: italic;}
+span.err-msg{color:#FF0000;clear:both;display:block;width:248px;float:right;}
+.sign-up input[type="radio"]{float:left;margin:4px 10px 0px 0px;width:auto;}
+.sign-up input[type="submit"],.Sign-In input[type="submit"]{display:table;margin:0 auto;clear:both;float:none; width:90px;}
+.float-LT{float:left;}	
+.flaot-RT{float:right;}
+p{margin:0px;padding:0px;display:block;float:left;width:100%;}
+	h4{text-align:center;margin:0px;padding:0px;}
+	.logo{display:table;margin:0 auto;}
+	sup{float:left;}
+	.remember {margin-left:150px;display: -moz-inline-box; line-height: 10px;}
+	.remember label{width:auto;}
+	.Sign-In	form{margin-top:10px;}
+	.remember input[type="checkbox"]{float:left;margin:8px 10px 0px 0px;}
+	#flash_alert,#flash_notice{
+   
+    position: relative;
+    top: 210px;
+    width: auto;
+	text-align:center;
+	color:#FF0000;}
