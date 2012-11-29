@@ -67,8 +67,8 @@ config.action_mailer.raise_delivery_errors = true
     :address              => "smtp.gmail.com",
     :port                 => 587,
     :domain               => 'gmail.com',
-    :user_name            => 'contactzatfish@gmail.com',
-    :password             => 'Nicholas123',
+    :user_name            => 'rp.radhi@gmail.com',
+    :password             => 'enpurushan',
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
   # Log the query plan for queries taking more than this (works
