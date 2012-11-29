@@ -17,9 +17,9 @@ class Devise::RegistrationsController < DeviseController
     build_resource
 
     if resource.save
-	resource.account_id = params[:account]	
+    resource.account_id = params[:account]	
       if resource.active_for_authentication?	      
-        set_flash_message :notice, :signed_up if is_navigational_format?
+        set_flash_message  :notice, :signed_up if is_navigational_format?
         sign_in(resource_name, resource)
         respond_with resource, :location => after_sign_up_path_for(resource)
       else
@@ -79,6 +79,12 @@ class Devise::RegistrationsController < DeviseController
 
   protected
 
+
+ def update_needs_confirmation?(resource, previous)
+    resource.respond_to?(:pending_reconfirmation?) &&
+      resource.pending_reconfirmation? &&
+      previous != resource.unconfirmed_email
+  end
   # Build a devise resource passing in the session. Useful to move
   # temporary session data to the newly created user.
   def build_resource(hash=nil)
@@ -95,7 +101,7 @@ class Devise::RegistrationsController < DeviseController
   # The path used after sign up for inactive accounts. You need to overwrite
   # this method in your own RegistrationsController.
   def after_inactive_sign_up_path_for(resource)
-    respond_to?(:root_path) ? root_path : "/"
+    respond_to?(:root_path) ? "/users/sign_in" : "/users/sign_in"
   end
 
   # The default url to be used after updating a resource. You need to overwrite
