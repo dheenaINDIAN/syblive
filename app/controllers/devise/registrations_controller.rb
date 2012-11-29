@@ -1,10 +1,14 @@
 class Devise::RegistrationsController < DeviseController
   prepend_before_filter :require_no_authentication, :only => [ :new, :create, :cancel ]
   prepend_before_filter :authenticate_scope!, :only => [:edit, :update, :destroy]
-
+ include ApplicationHelper
   # GET /resource/sign_up
   def new
+	  $render_str=""
     resource = build_resource({})
+      @account = Account.find(:all)    
+    
+    create_radio_button(@account)
     respond_with resource
   end
 
@@ -13,6 +17,7 @@ class Devise::RegistrationsController < DeviseController
     build_resource
 
     if resource.save
+	resource.account_id = params[:account]	
       if resource.active_for_authentication?	      
         set_flash_message :notice, :signed_up if is_navigational_format?
         sign_in(resource_name, resource)

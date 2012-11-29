@@ -5,6 +5,8 @@ Zatfish::Application.routes.draw do
   #devise_for :users
   match '/auth/:provider/callback'  => 'authorization#create'
   match '/auth/failure'             => 'authorization#failure'
+  
+  
 
   devise_for :users, :controllers => {:registrations => "devise/registrations"}
 

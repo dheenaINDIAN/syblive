@@ -1,18 +1,86 @@
-<h2>Sign up</h2>
+
+
+<div class="logo"><a href="#">
+<img src="/assets/ZatFish_Logo.png" width="540" height="235"  align="middle"/></a></div>
+<div class="sign-up">
+<h4>Sign Up</h4>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<p class="float-LT">
+<%if resource.errors[:firstname].present?%>
+<%= f.label :firstname %>
+<%= f.text_field :firstname ,:class=>"error"%>
+   <p><span class="err-msg"><%=resource.errors[:firstname][0]%></span></p>
+<%else%>
+<%= f.label :firstname %>
+<%= f.text_field :firstname %>
+  <%end%>
+</p>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+<p class="float-LT">
+<%if resource.errors[:lastname].present?%>
+<%= f.label :lastname %>
+<%= f.text_field :lastname ,:class=>"error"%>
+   <p><span class="err-msg"><%=resource.errors[:lastname][0]%></span></p>
+   <%else%>
+   <%= f.label :lastname %>
+   <%= f.text_field :lastname %>
+  <%end%>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+</p>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+<p class="float-LT">
+<%if resource.errors[:contactno].present?%>
+<%= f.label :contactno %>
+<%= f.text_field :contactno ,:class=>"error" %>
+ <p>  <span class="err-msg"><%=resource.errors[:contactno][0]%></span></p>
+   <%else%>
+   <%= f.label :contactno %>
+	<%= f.text_field :contactno%>
+   <%end%>
 
-  <div><%= f.submit "Sign up" %></div>
+</p>
+
+<p class="float-LT">
+
+ <%if resource.errors[:email].present?%>
+ <%= f.label :email %>
+ <%= f.text_field :email,  :class=>"error"%>
+ <p><span class="hint">eg:g@go.com</span></p>
+   <p><span class="err-msg"><%=resource.errors[:email][0]%></span></p>
+   <%else%>
+   <%= f.label :email %>
+   <%= f.text_field :email%>
+   <p><span class="hint">eg:g@go.com</span></p>
+   <%end%>
+
+</p>
+
+<p class="float-LT">
+
+  <%if resource.errors[:password].present?%>
+  <%= f.label :password %>
+  <%= f.password_field :password ,:class=>"error"%>
+  <p><span class="hint">Minimum 6 characters</span></p>
+   <p><span class="err-msg"><%=resource.errors[:password][0]%></span></p>
+   <%else%>
+   <%= f.label :password %>
+   <%= f.password_field :password %>
+   <p><span class="hint">Minimum 6 characters</span></p>
+   <%end%>
+
+</p>
+
+<p class="float-LT"><%= f.label :password_confirmation %>
+<%= f.password_field :password_confirmation %></p>
+
+<%= f.label :account_id %>
+<div class="float-LT">
+<div class="float-LT" style=" padding: 7px 0;"><%=$render_str.html_safe%></div>
+</div>
+<%= f.submit "Sign up" %>
+
 <% end %>
-
+<p>
 <%= render :partial => "devise/shared/links" %>
+</p>

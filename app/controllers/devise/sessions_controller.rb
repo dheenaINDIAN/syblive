@@ -12,6 +12,7 @@ class Devise::SessionsController < DeviseController
 
   # POST /resource/sign_in
   def create
+	  puts "hai helloooooooooooooo"
     resource = warden.authenticate!(auth_options)
     set_flash_message(:notice, :signed_in) if is_navigational_format?
     sign_in(resource_name, resource)

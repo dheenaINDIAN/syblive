@@ -1,12 +1,22 @@
-<h2>Forgot your password?</h2>
+<div class="logo"><a href="#">
+<img src="/assets/ZatFish_Logo.png" width="540" height="235"  align="middle"/></a></div>
+<div class="Sign-In">
+<h4>Forgot Password</h4>
 
 <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+<p class="float-LT">
+  <%if resource.errors[:email].present?%>
+  <%= f.label :email ,:class=>'error'%>
+<%= f.text_field :email %>
+<p><span class="err-msg"><%=resource.errors[:email][0]%></span></p>
+  <%else%>
+<%= f.label :email %>
+<%= f.text_field :email %>
+<%end%>
+</p>
 
-  <div><%= f.submit "Send me reset password instructions" %></div>
-<% end %>
+<%= f.submit "Send me" %>
+<%end%>
 
 <%= render :partial => "devise/shared/links" %>

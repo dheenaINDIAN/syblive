@@ -1,7 +1,7 @@
-<h3>User Profile</h3>
 
-<%@current_user_profile && @current_user_profile.each do |up|%>
-<%= up.profile_name%><br/>
-<%end%>
-<br/>
-<%=link_to 'Create New Profile',:action=>'new_user_profile'%>
+<div class="logo"><a href="#">
+<img src="/assets/ZatFish_Logo.png" width="540" height="235"  align="middle"/></a></div>
+
+<h4>Welcome <%=@current_user.capitalize%>!</h4>
+<center>
+<%= link_to "Sign out", destroy_user_session_path %></center>
