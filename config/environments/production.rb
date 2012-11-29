@@ -59,21 +59,18 @@ Zatfish::Application.configure do
   config.i18n.fallbacks = true
 
   # Send deprecation notices to registered listeners
-  config.active_support.deprecation = :notify
+  #config.active_support.deprecation = :notify
   config.action_mailer.raise_delivery_errors = true
   config.assets.debug = true
   config.action_mailer.delivery_method = :smtp
-    
-  ActionMailer::Base.smtp_settings = {
-  :address              => "smtp.gmail.com",
-  :port                 => 587,
-  :user_name            => "pandubalraj@gmail.com",
-  :password             => 'p@ndUb@1r@j',
-  :authentication       => 'plain',
-  :enable_starttls_auto => true
-  }
-    
-    
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => 'gmail.com',
+    :user_name            => 'zatfishnic@gmail.com',
+    :password             => 'Nicholas123',
+    :authentication       => 'plain',
+     }
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
