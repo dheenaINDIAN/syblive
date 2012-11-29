@@ -22,7 +22,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.integer :project_manager_id
       t.string :firstname
       t.string :lastname
-      t.integer :contactno
+      t.integer :contactno,:limit=>8
 
       ## Confirmable
       t.string   :confirmation_token
