@@ -35,14 +35,16 @@ class HomeController < ApplicationController
   p "--------#{params.inspect}-------"
   @user = User.new(params[:user])
   @user.position = params[:position]
-  if !@user.save
-     p "----@user.errors"
-     render :action=> new_user_path
-  else
-     p "---s-----#{@create_user}"
-	 flash[:notice] = 'User added and email send to the created user'
-	 redirect_to admin_page_path
-  end  
+  @user.confirmed_at = Time.now
+  p "----dd----#{@user.inspect}-------"
+   if !@user.save
+      p "----@user.errors"
+      render :action=> new_user_path
+   else
+      p "---s-----#{@create_user}"
+	  flash[:notice] = 'User added and email send to the created user'
+	  redirect_to admin_page_path
+   end  
 	 
   
   end
