@@ -70,12 +70,33 @@ def category
 end
 
 def new
- if params[:login] && params[:credential]
+ # if params[:login] && params[:credential]
+      # login = params[:login]
+      # password = params[:credential]
+      # user = User.find_by_email(login)
+      # if user && user.valid_password?(password)
+      # @csvreports = Csvupload.order("created_at DESC").limit(10)
+	   # respond_to do |format|
+       # format.json   { render :json => @csvreports }
+       # end
+	  # else
+	   # respond_to do |format|
+	   # @csvreports = 'invalid'
+       # format.json   { render :json => @csvreports  }
+	   # end
+	  # end
+ # else  
+	# respond_to do |format|
+	# @csvreports = 'invalid'
+    # format.json   { render :json => @csvreports  }  
+    # end	  
+ # end
+ if params[:login] && params[:credential] && params[:category]
       login = params[:login]
       password = params[:credential]
       user = User.find_by_email(login)
       if user && user.valid_password?(password)
-      @csvreports = Csvupload.order("created_at DESC").limit(10)
+      @csvreports = Csvupload.where("category = ?", params[:category]).order("created_at DESC").limit(5)
 	   respond_to do |format|
        format.json   { render :json => @csvreports }
        end
