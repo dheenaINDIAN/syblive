@@ -52,18 +52,21 @@ def category
       if user && user.valid_password?(password)
       @csvreports = Csvupload.where("category = ?", params[:category])
 	   respond_to do |format|
-       format.json   { render :json => @csvreports }
+       format.json   { render :json => {:category => @csvreports, 
+                 :message => "success"} }
        end
 	  else
 	   respond_to do |format|
 	   @csvreports = 'invalid'
-       format.json   { render :json => @csvreports  }
+       format.json   { render :json => {:category => @csvreports, 
+                 :message => "failure"} }
 	   end
 	  end
  else  
 	respond_to do |format|
 	@csvreports = 'invalid'
-    format.json   { render :json => @csvreports  }  
+    format.json   { render :json => {:category => @csvreports, 
+                 :message => "failure"}  }  
     end	  
  end
  p "-------------#{@csvreports}-------"
@@ -77,18 +80,21 @@ def new
       if user && user.valid_password?(password)
       @csvreports = Csvupload.order("created_at DESC").limit(10)
 	   respond_to do |format|
-       format.json   { render :json => @csvreports }
+       format.json   { render :json => {:category => @csvreports, 
+                 :message => "success"} }
        end
 	  else
 	   respond_to do |format|
 	   @csvreports = 'invalid'
-       format.json   { render :json => @csvreports  }
+       format.json   { render :json => {:category => @csvreports, 
+                 :message => "failure"}  }
 	   end
 	  end
  else  
 	respond_to do |format|
 	@csvreports = 'invalid'
-    format.json   { render :json => @csvreports  }  
+    format.json   { render :json => {:category => @csvreports, 
+                 :message => "failure"}  }  
     end	  
  end
  p "-------------#{@csvreports}-------"
