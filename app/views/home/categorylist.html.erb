@@ -1,0 +1,23 @@
+<div class="logo"><a href="#">
+<img src="/assets/logo.png" width="340" height="135"  align="middle"/></a></div>
+<% if !@current_user.nil? %>
+<h4>Welcome <%=current_user.email.capitalize%>!</h4>
+<% else %>
+<h4>Welcome Guest</h4>
+<% end %>
+<center>
+<%= link_to "Sign out", destroy_user_session_path %></center>
+<div class="Sign-In" style="width:1200px">
+<h2> <%= @category%> Reports   </h2>
+<ul>
+<% if !@csvreports.nil?%>
+   <%@csvreports.each do |csv|%>
+   <li>
+      <%name =  (csv.csvfile_file_name).split('.cs')%>
+	  <%name_id = csv.id%>
+	  <%= link_to name[0], "/chart/#{name_id}"%>
+   </li>
+   <% end %>
+<% end %>
+</ul>
+</div>

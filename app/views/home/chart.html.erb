@@ -1,0 +1,54 @@
+<div class="logo"><a href="#">
+<img src="/assets/logo.png" width="340" height="135"  align="middle"/></a></div>
+<h4>Welcome <%=current_user.email.capitalize%>!</h4>
+<center>
+<%= link_to "Sign out", destroy_user_session_path %></center>
+<div class="Sign-In" style="width:1200px">
+<div><%= link_to 'back to dashboard', "/home/dashboard"%></div>
+<h2> <%=@csvreports.category%> Report   </h2>
+<div id="container"></div>
+</div>
+
+
+<script>
+var chart1;
+$(document).ready(function() {
+      var dyn_height = (<%=raw @tabled.by_col[0] %>.length) * 110;
+	  $('#container').css('height',dyn_height);
+	   chart1 = ({
+         chart: {
+            renderTo: 'container',
+            type: 'bar'
+         },
+         title: {
+            text: '<%= @chart_name[0]%> '
+         },
+		 
+         xAxis: {
+            categories: <%=raw @tabled.by_col[0] %>
+         },
+         yAxis: {
+            title: {
+               text: '<%= @yaxis_unit %>'
+            },
+			labels: {
+                    formatter: function() {
+                        return this.value +'<%= @yaxis_sub%>';
+                    }
+					}
+         },
+		 series: []
+		 
+      });
+	  
+	 
+	  
+	  <% @c.each do|key, value| %>
+    	chart1.series.push({
+		name: '<%= key %>',
+		data: <%= raw value %>
+		})
+	   <% end %>
+	var chart = new Highcharts.Chart(chart1);
+   });
+   </script>

@@ -6,18 +6,18 @@ class Devise::RegistrationsController < DeviseController
   def new
 	  $render_str=""
     resource = build_resource({})
-      @account = Account.find(:all)    
     
-    create_radio_button(@account)
     respond_with resource
   end
 
   # POST /resource
   def create
+  p "---------------------#{params['position']}-----------"
     build_resource
+	resource.position=params['position']
 
     if resource.save
-    resource.account_id = params[:account]	
+     puts "++++++++#{resource.position}+++++"
       if resource.active_for_authentication?	      
         set_flash_message  :notice, :signed_up if is_navigational_format?
         sign_in(resource_name, resource)

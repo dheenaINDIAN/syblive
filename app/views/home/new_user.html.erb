@@ -1,0 +1,49 @@
+
+<div class="logo"><a href="#">
+<img src="/assets/logo.png" width="340" height="135"  align="middle"/></a></div>
+
+<h4>Welcome <%=@current_user.capitalize%>!</h4>
+<center>
+<%= link_to "Sign out", destroy_user_session_path %></center>
+<div class="Sign-In" style="width:1200px">
+<h2> Create User  </h2>
+
+<%= form_for(@user,:url => create_user_path) do |f| %>
+ <p class="float-LT">
+
+ 
+ <%= f.label :email %>
+ <%= f.text_field :email,  :class=>"error"%>
+ <p><span class="hint">eg:g@go.com</span></p>
+   <p><span class="err-msg"><%=@user.errors[:email][0]%></span></p>
+   
+   
+  
+
+</p>
+
+<p class="float-LT">
+
+  
+  <%= f.label :password %>
+  <%= f.password_field :password ,:class=>"error"%>
+  <p><span class="hint">Minimum 6 characters</span></p>
+   <p><span class="err-msg"><%=@user.errors[:password][0]%></span></p>
+  
+</p>
+
+
+<p class="float-LT">
+<%= radio_button_tag(:position, "ceo") %>
+<%= label_tag(:position_ceo, "CEO") %>
+<%= radio_button_tag(:position, "manager") %>
+<%= label_tag(:position_manager, "Manager") %>
+<%= radio_button_tag(:position, "staff") %>
+<%= label_tag(:position_staff, "Staff") %>
+<p><span class="err-msg"><%=@user.errors[:position][0]%></span></p>
+</p>
+<%= f.submit "create" %>
+
+<% end %>
+
+</div>

@@ -1,0 +1,17 @@
+
+<div class="logo"><a href="#">
+<img src="/assets/logo.png" width="340" height="135"  align="middle"/></a></div>
+
+<h4>Welcome <%=@current_user.capitalize%>!</h4>
+<center>
+<%= link_to "Sign out", destroy_user_session_path %></center>
+<div class="Sign-In" style="width:1200px">
+<h2> Reports </h2>
+<ul>
+<li><%= link_to "Upload New CSV", home_csvupload_path %></li>
+<li><%= link_to "Create User", new_user_path %></li>
+<li><%= link_to "Chart Category", home_dashboard_path %></li>
+
+
+
+</div>

@@ -1,0 +1,19 @@
+<div class="logo"><a href="#">
+<img src="/assets/logo.png" width="340" height="135"  align="middle"/></a></div>
+
+<h4>Welcome <%=current_user.email.capitalize%>!</h4>
+<center>
+<%= link_to "Sign out", destroy_user_session_path %></center>
+<div class="Sign-In">
+
+
+<h4>Upload CSV for Category</h4>
+<%= form_for @csvupload, :url => home_csv_path, :html => { :multipart => true } do |form| %>
+  <%= form.select :category, options_for_select([["Select", ""], "Weekly", "Sales", "Employee", "Projects", "Profit&Loss","Expenses","Bussiness_Propect","Technology_Propect","Resource_Demand"]), :class => 'genForm_dropBox' %>
+  <br/>
+  <br/>
+  <%= form.file_field :csvfile %> <br/>
+  <br/>
+  <%= form.submit%>
+<% end %>
+</div>

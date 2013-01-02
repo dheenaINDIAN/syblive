@@ -5,8 +5,19 @@ Zatfish::Application.routes.draw do
   #devise_for :users
   match '/auth/:provider/callback'  => 'authorization#create'
   match '/auth/failure'             => 'authorization#failure'
-  
-  
+  match 'home/csv' => 'home#csv', :via => :post
+  match 'home/csvupload' => 'home#csvupload', :via => :get
+  match 'home/categorylist/:id' => 'home#categorylist'
+  match '/chart/:id' => 'home#chart'
+  match 'admin_page'  => 'home#admin_page'
+  match 'home/dashboard' => 'home#dashboard'
+  match 'new_user'  => 'home#new_user'
+  match 'create_user'  => 'home#create_user'
+  match 'index'  => 'home#index'
+  match 'login'  => 'api#login'
+  match 'category'  => 'api#category'
+  match 'new'  => 'api#new'
+ 
 
   devise_for :users, :controllers => {:registrations => "devise/registrations"}
 
@@ -59,8 +70,9 @@ Zatfish::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-   root :to => 'home#dashboard'
-
+  # root :to => 'home#dashboard'
+  
+   root :to => 'home#index'
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

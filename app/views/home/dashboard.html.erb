@@ -1,7 +1,14 @@
 
 <div class="logo"><a href="#">
-<img src="/assets/ZatFish_Logo.png" width="540" height="235"  align="middle"/></a></div>
+<img src="/assets/logo.png" width="340" height="135"  align="middle"/></a></div>
 
-<h4>Welcome <%=@current_user.capitalize%>!</h4>
+<h4>Welcome <%=current_user.email.capitalize%>!</h4>
 <center>
 <%= link_to "Sign out", destroy_user_session_path %></center>
+<div class="Sign-In" style="width:1200px">
+<h2> Reports </h2>
+<% @cate.each do|categ| %>
+<%img = categ.to_s%>
+<img src="/assets/<%=img%>.png" width="53" height="44"  align="middle"/> <%= link_to categ, :action=>"categorylist" ,:id=> categ %> <br><br>
+<% end %>
+</div>

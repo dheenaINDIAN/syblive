@@ -12,7 +12,7 @@ Zatfish::Application.configure do
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true   
   config.action_controller.perform_caching = false
-  config.action_mailer.default_url_options = { :host => 'dev-zatfish.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
@@ -40,8 +40,8 @@ Zatfish::Application.configure do
     :address              => "smtp.gmail.com",
     :port                 => 587,
     :domain               => 'gmail.com',
-    :user_name            => 'contactzatfish@gmail.com',
-    :password             => 'Nicholas123',
+    :user_name            => 'dheenadon@gmail.com',
+    :password             => 'dheenadhayalan',
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
 end

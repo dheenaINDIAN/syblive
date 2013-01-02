@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Zatfish</title>
+  <title>SybrantLive</title>
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>  
+  <%= javascript_include_tag "jquery-1.8.3" %>
+  <%= javascript_include_tag "highcharts" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 <%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
 <%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %>
 <%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
+
 <%= yield %>
 
 </body>
