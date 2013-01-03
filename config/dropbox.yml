@@ -1,0 +1,18 @@
+development: 
+  app_key: z5urn1gmegctoye
+  app_secret: wd81ss34fqolni1
+  access_token: hdfeo8diy4sbjf7
+  access_token_secret: fgpeiw56w11cnfp
+  user_id: 44488458
+  access_type: app_folder
+  
+production:
+  app_key: z5urn1gmegctoye
+  app_secret: wd81ss34fqolni1
+  access_token: <%= ENV['token'] %>
+  access_token_secret: <%= ENV['secret'] %>
+  user_id: 44488458
+  access_type: app_folder
+
+
+
