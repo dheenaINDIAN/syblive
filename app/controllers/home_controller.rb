@@ -94,7 +94,7 @@ class HomeController < ApplicationController
 	 @csvreports = Csvupload.where("category = ?", params[:id])
   end
   def chart
-  @csvreports = Csvupload.where("id = ?", params[:id]).first
+    @csvreports = Csvupload.where("id = ?", params[:id]).first
 
   case @csvreports.category
   when 'Weekly'
@@ -125,21 +125,26 @@ class HomeController < ApplicationController
   @yaxis_unit = 'No of Resources'
   @yaxis_sub = 'R'
   end
-  p "---------#{@yaxis_sub}----------"
+  p "---------#{@yaxis_sub}----https://dl.dropbox.com/0/view/j1g15ltz8e0lzz3/Apps/sybrantlive/original/4/sheet_test.csv------"
   @chart_name = (@csvreports.csvfile_file_name).split('.cs')
-  @tabled = CSV::table("app/assets/fold/#{params[:id]}/#{@csvreports.csvfile_file_name}")
-  a1 = @tabled.headers()
+  p "---ch------#{@chart_name}----------"
+  #url = "https://dl.dropbox.com/0/view/j1g15ltz8e0lzz3/Apps/sybrantlive/original/4/sheet_test.csv"
+  url = @csvreports.csvfile.url 
+  data = open("#{url}")
+  @tabled= CSV.parse(data)
+  a1 = @tabled[0]
+  @tab_transpose = @tabled.transpose
   @c={}
   b1=[]
-  k = @tabled.headers().length - 1
+  k = @tabled[0].length - 1
   i = 1
    for i in 0..k
-   b1 <<  @tabled.by_col[i]
+     @tab_transpose[i].shift
+     b1 <<  @tab_transpose[i]
    end
    a1.shift
    b1.shift
    a1.each_with_index {|k,i|@c[k] = b1[i]}
    render :template => '/home/chart'
   end
-  
 end
