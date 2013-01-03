@@ -13,42 +13,44 @@
 <script>
 var chart1;
 $(document).ready(function() {
-      var dyn_height = (<%=raw @tabled.by_col[0] %>.length) * 110;
-	  $('#container').css('height',dyn_height);
-	   chart1 = ({
+
+    var dyn_height = (<%=raw @tab_transpose[0] %>.length) * 110;
+    $('#container').css('height',dyn_height);
+
+     chart1 = ({
          chart: {
             renderTo: 'container',
             type: 'bar'
          },
          title: {
-            text: '<%= @chart_name[0]%> '
+            text: '<%= @chart_name[0]%>'
          },
-		 
          xAxis: {
-            categories: <%=raw @tabled.by_col[0] %>
+            categories: <%=raw @tab_transpose[0] %>
          },
          yAxis: {
             title: {
                text: '<%= @yaxis_unit %>'
             },
-			labels: {
-                    formatter: function() {
-                        return this.value +'<%= @yaxis_sub%>';
-                    }
-					}
-         },
-		 series: []
+         labels: {
+                   formatter: function() {
+                       return this.value +'<%= @yaxis_sub%>';
+                 }
+				}
 		 
+        },
+		 series: []
+         
       });
-	  
-	 
-	  
 	  <% @c.each do|key, value| %>
+	   var c = <%= value.map{|i|  i.to_i} %>
+	      
     	chart1.series.push({
+		
 		name: '<%= key %>',
-		data: <%= raw value %>
+		data: c
 		})
-	   <% end %>
-	var chart = new Highcharts.Chart(chart1);
+		 <% end %>
+	  var chart = new Highcharts.Chart(chart1);
    });
    </script>
