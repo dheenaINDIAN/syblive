@@ -127,7 +127,7 @@ class HomeController < ApplicationController
   end
   p "---------#{@yaxis_sub}----------"
   @chart_name = (@csvreports.csvfile_file_name).split('.cs')
-  @tabled = CSV::table("public/assets/file/#{params[:id]}/#{@csvreports.csvfile_file_name}")
+  @tabled = CSV::table("app/assets/fold/#{params[:id]}/#{@csvreports.csvfile_file_name}")
   a1 = @tabled.headers()
   @c={}
   b1=[]
