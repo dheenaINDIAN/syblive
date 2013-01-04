@@ -8,9 +8,10 @@ class User < ActiveRecord::Base
   
   attr_accessible :email, :password, :password_confirmation, :remember_me, :position, :confirmed_at
   
-  validates_presence_of :email ,:message =>"Email can't be blank",:unless => 'email == "admin"'
-  validates_uniqueness_of :email,:message=>'Email already exists' ,:allow_blank=>true,:unless => 'email == "admin"'
-  validates_format_of :email, :with =>%r{^(?:[_a-z0-9-]+)(\.[_a-z0-9-]+)*@([a-z0-9-]+)(\.[a-zA-Z0-9\-\.]+)*(\.[a-z]{2,4})$}i,:message=>"Please enter a Valid Email", :allow_blank=>true,:unless => 'email == "admin"'
+  validates_presence_of :email ,:message =>"User name can't be blank",:unless => 'email == "admin"'
+  validates_uniqueness_of :email,:message=>'User name already exists' ,:allow_blank=>true,:unless => 'email == "admin"'
+  validates_length_of :email , :minimum=>6 ,:allowblank=> true,:unless => 'email == "admin"'
+ # validates_format_of :email, :with =>%r{^(?:[_a-z0-9-]+)(\.[_a-z0-9-]+)*@([a-z0-9-]+)(\.[a-zA-Z0-9\-\.]+)*(\.[a-z]{2,4})$}i,:message=>"Please enter a Valid Email", :allow_blank=>true,:unless => 'email == "admin"'
  validates_presence_of     :password, :message=>"Please enter password", :on => :create
  validates_confirmation_of :password, :on => :create
  validates_length_of :password , :minimum=>6 ,:allowblank=> true
