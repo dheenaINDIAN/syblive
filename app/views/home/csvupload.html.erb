@@ -5,8 +5,8 @@
 <center>
 <%= link_to "Sign out", destroy_user_session_path %></center>
 <div class="Sign-In">
-
-
+<div><%= link_to 'Back to Main_Page', admin_page_path%></div>
+</br>
 <h4>Upload CSV for Category</h4>
 <%= form_for @csvupload, :url => home_csv_path, :html => { :multipart => true } do |form| %>
   <%= form.select :category, options_for_select([["Select", ""], "Weekly", "Sales", "Employee", "Projects", "Profit&Loss","Expenses","Bussiness_Propect","Technology_Propect","Resource_Demand"]), :class => 'genForm_dropBox' %>

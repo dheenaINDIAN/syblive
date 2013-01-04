@@ -6,16 +6,17 @@
 <center>
 <%= link_to "Sign out", destroy_user_session_path %></center>
 <div class="Sign-In" style="width:1200px">
+<div><%= link_to 'Back to Main_Page', admin_page_path%></div>
 <h2> Create User  </h2>
 
 <%= form_for(@user,:url => create_user_path) do |f| %>
  <p class="float-LT">
-
- 
- <%= f.label :email %>
- <%= f.text_field :email,  :class=>"error"%>
- <p><span class="hint">eg:g@go.com</span></p>
-   <p><span class="err-msg"><%=@user.errors[:email][0]%></span></p>
+<table>
+ <tr>
+ <td><%= f.label :User_Name %></td>
+ <td><%= f.text_field :email,  :class=>"error"%></td><td><p><span class="err-msg"><%=@user.errors[:email][0]%></span></p></td></tr>
+ <tr><td></td><td><p><span class="hint">eg:g@go.com</span></p></td></tr>
+   
    
    
   
@@ -25,25 +26,22 @@
 <p class="float-LT">
 
   
-  <%= f.label :password %>
-  <%= f.password_field :password ,:class=>"error"%>
-  <p><span class="hint">Minimum 6 characters</span></p>
-   <p><span class="err-msg"><%=@user.errors[:password][0]%></span></p>
+  <tr><td><%= f.label :password %></td>
+  <td><%= f.password_field :password ,:class=>"error"%></td><td><p><span class="err-msg"><%=@user.errors[:password][0]%></span></p></td></tr>
+  <tr><td></td><td><p><span class="hint">Minimum 6 characters</span></p></td></tr>
+   
   
 </p>
 
 
 <p class="float-LT">
-<%= radio_button_tag(:position, "ceo") %>
-<%= label_tag(:position_ceo, "CEO") %>
-<%= radio_button_tag(:position, "manager") %>
-<%= label_tag(:position_manager, "Manager") %>
-<%= radio_button_tag(:position, "staff") %>
-<%= label_tag(:position_staff, "Staff") %>
-<p><span class="err-msg"><%=@user.errors[:position][0]%></span></p>
+<tr><td>Position:</td>
+
+<td ><span style='margin-left:1px;'>CEO<%= radio_button_tag(:position, "ceo") %>Manager<%= radio_button_tag(:position, "manager") %>Staff<%= radio_button_tag(:position, "staff") %></span></td><td><p><span class="err-msg"><%=@user.errors[:position][0]%><span></p></td></tr>
 </p>
-<%= f.submit "create" %>
+<tr><td></br></td></tr>
+<tr><td><%= f.submit "create" %></td></tr>
 
 <% end %>
-
+</table>
 </div>

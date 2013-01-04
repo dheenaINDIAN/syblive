@@ -6,6 +6,9 @@
 <center>
 <%= link_to "Sign out", destroy_user_session_path %></center>
 <div class="Sign-In" style="width:1200px">
+<% if (current_user.email) == 'admin' %>
+<div><%= link_to 'Back to Main_Page', admin_page_path%></div>
+<% end %>
 <h2> Reports </h2>
 <% @cate.each do|categ| %>
 <%img = categ.to_s%>
