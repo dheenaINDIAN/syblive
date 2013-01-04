@@ -51,7 +51,7 @@ def category
       user = User.find_by_email(login)
       if user && user.valid_password?(password)
       @csvreports = Csvupload.where("category = ?", params[:category])
-	  @favour = Favourate.where(:type_fav => params[:category],:user_fav => user.id).map(&:file_fav)
+	  @favour = Favourate.where(:type_fav => params[:category],:user_fav => (user.id).to_s).map(&:file_fav)
 	    if @favour != []
 		@list = []
 	    @favour.map{|x| @list << Csvupload.where(:id => x)}
@@ -86,7 +86,7 @@ def new
       user = User.find_by_email(login)
       if user && user.valid_password?(password)
       @csvreports = Csvupload.where("category = ?", params[:category]).order("created_at DESC").limit(5)
-	  @favour = Favourate.where(:type_fav => params[:category],:user_fav => user.id).map(&:file_fav)
+	  @favour = Favourate.where(:type_fav => params[:category],:user_fav => (user.id).to_s).map(&:file_fav)
 	    if @favour
 		@list = []
 	    @favour.map{|x| @list << Csvupload.where(:id => x)}
@@ -120,8 +120,8 @@ def favourite
       password = params[:credential]
       user = User.find_by_email(login)
       if user && user.valid_password?(password)
-	   check = Favourate.where(:user_fav =>user.id,:file_fav => params[:file],:type_fav => params[:type])
-	   p "kk--#{params[:type]}---kkk  fff#{check}"
+	   check = Favourate.where(:user_fav =>(user.id).to_s,:file_fav => params[:file].to_s,:type_fav => params[:type].to_s)
+	   p "kk--#{params[:type]}---kkk  fff#{check.inspect}"
 	   if check == []
 	    @favourite = Favourate.create(:user_fav =>user.id,:file_fav => params[:file],:type_fav => params[:type])
 	    respond_to do |format|
@@ -154,7 +154,7 @@ def favourite_list
       password = params[:credential]
       user = User.find_by_email(login)
       if user && user.valid_password?(password)
-	   @fileid = Favourate.where(:type_fav => params[:type],:user_fav => user.id).map(&:file_fav)
+	   @fileid = Favourate.where(:type_fav => params[:type],:user_fav => (user.id).to_s).map(&:file_fav)
 	   p "------#{@fileid.inspect}---"
 	   if @fileid == []
 	    respond_to do |format|
