@@ -92,40 +92,40 @@ class HomeController < ApplicationController
   def categorylist
   	 @category = params[:id]
 	 @csvreports = Csvupload.where("category = ?", params[:id])
+	 
   end
   def chart
     @csvreports = Csvupload.where("id = ?", params[:id]).first
 
   case @csvreports.category
   when 'Weekly'
-  @yaxis_unit = 'No of members'
-  @yaxis_sub = 'mm'
+  @yaxis_unit = 'Percentage'
+  @yaxis_sub = ''
   when "Sales"
   @yaxis_unit = 'No of Sales'
-  @yaxis_sub = 'cm'
+  @yaxis_sub = ''
   when "Employee"
-  @yaxis_unit = 'No of Employee'
-  @yaxis_sub = 'M'
+  @yaxis_unit = 'Strength'
+  @yaxis_sub = ''
   when "Projects"
   @yaxis_unit = 'No of Projects'
-  @yaxis_sub = 'mm'
+  @yaxis_sub = ''
   when "Profit&Loss"
-  @yaxis_unit = 'No of Profit'
-  @yaxis_sub = 'U'
+  @yaxis_unit = 'Percentage'
+  @yaxis_sub = ''
   when "Expenses"
-  @yaxis_unit = 'No of Expenses'
-  @yaxis_sub  = 'F'
+  @yaxis_unit = 'Amount'
+  @yaxis_sub  = ''
   when "Bussiness Propect"
   @yaxis_unit = 'No of Bussiness'
-  @yaxis_sub = 'C'
+  @yaxis_sub = ''
   when "Technology Propect"
   @yaxis_unit = 'No of Technology'
-  @yaxis_sub = 'S'
+  @yaxis_sub = ''
   else
   @yaxis_unit = 'No of Resources'
-  @yaxis_sub = 'R'
+  @yaxis_sub = ''
   end
-  p "---------#{@yaxis_sub}----https://dl.dropbox.com/0/view/j1g15ltz8e0lzz3/Apps/sybrantlive/original/4/sheet_test.csv------"
   @chart_name = (@csvreports.csvfile_file_name).split('.cs')
   p "---ch------#{@chart_name}----------"
   #url = "https://dl.dropbox.com/0/view/j1g15ltz8e0lzz3/Apps/sybrantlive/original/4/sheet_test.csv"
@@ -147,4 +147,13 @@ class HomeController < ApplicationController
    a1.each_with_index {|k,i|@c[k] = b1[i]}
    render :template => '/home/chart'
   end
+  
+  def delet
+    @csvreports = Csvupload.where("id = ?", params[:id]).first
+	favour = Favourate.where(:file_fav => (@csvreports.id).to_s)
+	favour.destroy_all if (favour != [])
+	@csvreports.delete
+	redirect_to home_dashboard_path
+  end
+  
 end
