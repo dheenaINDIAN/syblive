@@ -46,10 +46,12 @@ end
 
 def category
  if params[:login] && params[:credential] && params[:category]
+      params[:category] = 'Profit&Loss' if (params[:category] == 'ProfitLoss') 
       login = params[:login]
       password = params[:credential]
       user = User.find_by_email(login)
       if user && user.valid_password?(password)
+	  p "----------#{params[:category]}"
       @csvreports = Csvupload.where("category = ?", params[:category])
 	  @favour = Favourate.where(:type_fav => params[:category],:user_fav => (user.id).to_s).map(&:file_fav)
 	    if @favour != []
@@ -81,6 +83,7 @@ end
 
 def new
  if params[:login] && params[:credential] && params[:category]
+      params[:category] = 'Profit&Loss' if (params[:category] == 'ProfitLoss') 
       login = params[:login]
       password = params[:credential]
       user = User.find_by_email(login)
@@ -116,6 +119,7 @@ end
 
 def favourite
  if params[:login] && params[:credential] && params[:file] && params[:type]
+      params[:type] = 'Profit&Loss' if (params[:type] == 'ProfitLoss') 
       login = params[:login]
       password = params[:credential]
       user = User.find_by_email(login)
@@ -150,6 +154,7 @@ end
 
 def favourite_list
  if params[:login] && params[:credential] && params[:type]
+       params[:type] = 'Profit&Loss' if (params[:type] == 'ProfitLoss') 
       login = params[:login]
       password = params[:credential]
       user = User.find_by_email(login)
@@ -163,8 +168,11 @@ def favourite_list
 	   else
 	    @list = []
 	    @fileid.map{|x| @list << Csvupload.where(:id => x)}
+		@list.flatten! 
+		@list.map{|x| x.category = x.csvfile.url}
+		@list.map{|x| x.csvfile_content_type = 'favourite'}
 	    respond_to do |format|
-        format.json   { render :json => @list.flatten! }
+        format.json   { render :json => @list }
         end
 	   end
 	  else
@@ -182,6 +190,39 @@ def favourite_list
  
 end
 
+def favourite_delete
+  if params[:login] && params[:credential] && params[:file] && params[:type]
+      params[:type] = 'Profit&Loss' if (params[:type] == 'ProfitLoss') 
+      login = params[:login]
+      password = params[:credential]
+      user = User.find_by_email(login)
+      if user && user.valid_password?(password)
+	   @check = Favourate.where(:user_fav =>(user.id).to_s,:file_fav => params[:file].to_s,:type_fav => params[:type].to_s)
+	   p "kk--#{params[:type]}---kkk  fff#{@check.inspect}"
+	   if @check == []
+	    respond_to do |format|
+        format.json   { render :json => "invalid" }
+        end
+	   else
+	    @check.destroy_all
+	    respond_to do |format|
+        format.json   { render :json => "favourite_deleted" }
+        end
+	   end
+	  else
+	   respond_to do |format|
+	   @csvreports = 'invalid'
+       format.json   { render :json => @csvreports  }
+	   end
+	  end
+ else  
+	respond_to do |format|
+	@csvreports = 'invalid'
+    format.json   { render :json => @csvreports  }  
+    end	  
+ end
+
+end
 
  
 end
