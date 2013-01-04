@@ -51,6 +51,7 @@ def category
       user = User.find_by_email(login)
       if user && user.valid_password?(password)
       @csvreports = Csvupload.where("category = ?", params[:category])
+	  @csvreport = @csvreports.map{|x| x.category << x.csvfile.url}
 	   respond_to do |format|
        format.json   { render :json => @csvreports }
        end
