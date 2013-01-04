@@ -17,6 +17,8 @@ Zatfish::Application.routes.draw do
   match 'login'  => 'api#login'
   match 'category'  => 'api#category'
   match 'new'  => 'api#new'
+  match 'favourite'  => 'api#favourite'
+  match 'favourite_list'  => 'api#favourite_list'
  
 
   devise_for :users, :controllers => {:registrations => "devise/registrations"}
