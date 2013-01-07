@@ -163,7 +163,7 @@ def favourite_list
 	   p "------#{@fileid.inspect}---"
 	   if @fileid == []
 	    respond_to do |format|
-        format.json   { render :json => {:message => 'no favourite'}   }
+        format.json   { render :json => {:category => 'no favourite'}   }
         end
 	   else
 	    @list = []

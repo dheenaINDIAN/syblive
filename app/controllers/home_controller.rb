@@ -153,6 +153,7 @@ class HomeController < ApplicationController
 	favour = Favourate.where(:file_fav => (@csvreports.id).to_s)
 	favour.destroy_all if (favour != [])
 	@csvreports.delete
+	flash[:notice] = 'CSV file deleted successfully.'
 	redirect_to home_dashboard_path
   end
   
