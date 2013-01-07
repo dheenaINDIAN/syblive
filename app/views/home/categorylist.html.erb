@@ -10,16 +10,16 @@
 <h2> <%= @category%> Reports   </h2>
 
 <% if @csvreports != []%>
-   <ul>
+   <table>
    <%@csvreports.each do |csv|%>
-   <li>
+   <tr><td style="width:400px;">
       <%name =  (csv.csvfile_file_name).split('.cs')%>
 	  <%name_id = csv.id%>
-	  <%= link_to name[0], "/chart/#{name_id}"%>         <span style="padding-left:30px"> <%= link_to 'Delete', "/delet/#{name_id}"%></span>
-   </li>
+	  <%= link_to name[0], "/chart/#{name_id}"%></td><td> <%= link_to 'Delete', "/delet/#{name_id}"%></td>
+   </tr>
    
    <% end %>
-   </ul>
+   </table>
 <% else %>
    <div><center>Currently no files uploaded</center></div>   
 <% end %>
