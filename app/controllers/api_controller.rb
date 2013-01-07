@@ -69,13 +69,13 @@ def category
 	  else
 	   respond_to do |format|
 	   @csvreports = 'invalid'
-       format.json   { render :json => {:category => @csvreports}  }
+       format.json   { render :json => {:message => @csvreports}  }
 	   end
 	  end
  else  
 	respond_to do |format|
 	@csvreports = 'invalid'
-    format.json   { render :json => {:category => @csvreports}   }  
+    format.json   { render :json => {:message => @csvreports}   }  
     end	  
  end
  p "-------------#{@csvreports}-------"
@@ -105,13 +105,13 @@ def new
 	  else
 	   respond_to do |format|
 	   @csvreports = 'invalid'
-       format.json   { render :json => {:category => @csvreports}   }
+       format.json   { render :json => {:message => @csvreports}   }
 	   end
 	  end
  else  
 	respond_to do |format|
 	@csvreports = 'invalid'
-    format.json   { render :json => {:category => @csvreports}   }  
+    format.json   { render :json => {:message => @csvreports}   }  
     end	  
  end
  p "-------------#{@csvreports}-------"
@@ -129,23 +129,23 @@ def favourite
 	   if check == []
 	    @favourite = Favourate.create(:user_fav =>user.id,:file_fav => params[:file],:type_fav => params[:type])
 	    respond_to do |format|
-        format.json   { render :json => {:category => 'success'}  }
+        format.json   { render :json => {:message => 'success'}  }
         end
 	   else
 	    respond_to do |format|
-        format.json   { render :json => {:category => 'already exit or invalid'} }
+        format.json   { render :json => {:message => 'already exit or invalid'} }
         end
 	   end
 	  else
 	   respond_to do |format|
 	   @csvreports = 'invalid'
-       format.json   { render :json => {:category => @csvreports}    }
+       format.json   { render :json => {:message => @csvreports}    }
 	   end
 	  end
  else  
 	respond_to do |format|
 	@csvreports = 'invalid'
-    format.json   { render :json => {:category => @csvreports}   }  
+    format.json   { render :json => {:message => @csvreports}   }  
     end	  
  end
  
@@ -163,7 +163,7 @@ def favourite_list
 	   p "------#{@fileid.inspect}---"
 	   if @fileid == []
 	    respond_to do |format|
-        format.json   { render :json => {:category => 'no favourite'}   }
+        format.json   { render :json => {:message => 'no favourite'}   }
         end
 	   else
 	    @list = []
@@ -178,13 +178,13 @@ def favourite_list
 	  else
 	   respond_to do |format|
 	   @csvreports = 'invalid'
-       format.json   { render :json => {:category => @csvreports}    }
+       format.json   { render :json => {:message => @csvreports}    }
 	   end
 	  end
  else  
 	respond_to do |format|
 	@csvreports = 'invalid'
-    format.json   { render :json => {:category => @csvreports}    }  
+    format.json   { render :json => {:message => @csvreports}    }  
     end	  
  end
  
@@ -201,24 +201,24 @@ def favourite_delete
 	   p "kk--#{params[:type]}---kkk  fff#{@check.inspect}"
 	   if @check == []
 	    respond_to do |format|
-        format.json   { render :json => {:category => 'invalid'}}
+        format.json   { render :json => {:message => 'invalid'}}
         end
 	   else
 	    @check.destroy_all
 	    respond_to do |format|
-        format.json   { render :json => {:category =>"favourite_deleted"} }
+        format.json   { render :json => {:message =>"favourite_deleted"} }
         end
 	   end
 	  else
 	   respond_to do |format|
 	   @csvreports = 'invalid'
-       format.json   { render :json => {:category => @csvreports}   }
+       format.json   { render :json => {:message => @csvreports}   }
 	   end
 	  end
  else  
 	respond_to do |format|
 	@csvreports = 'invalid'
-    format.json   { render :json => {:category => @csvreports}  }  
+    format.json   { render :json => {:message => @csvreports}  }  
     end	  
  end
 
