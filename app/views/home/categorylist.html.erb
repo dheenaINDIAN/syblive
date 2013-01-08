@@ -15,7 +15,10 @@
    <tr><td style="width:400px;">
       <%name =  (csv.csvfile_file_name).split('.cs')%>
 	  <%name_id = csv.id%>
-	  <%= link_to name[0], "/chart/#{name_id}"%></td><td> <%= link_to 'Delete', "/delet/#{name_id}"%></td>
+	  <%= link_to name[0], "/chart/#{name_id}"%></td>
+	    <% if(current_user.email == 'admin') %>
+		<td> <%= link_to 'Delete', "/delet/#{name_id}"%></td>
+		<% end %>
    </tr>
    
    <% end %>
