@@ -99,6 +99,9 @@ def new
 		@csvreports = @diff.concat(@list)
 		end
 		@reportfinal = @csvreports.map{|x| x.category = x.csvfile.url}
+		
+		@csvreports = @csvreports.sort_by{|x| x.created_at}
+		@csvreports.reverse!
 		 respond_to do |format|
        format.json   { render :json => @csvreports }
        end
