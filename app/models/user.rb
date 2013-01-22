@@ -19,8 +19,8 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   
   
-  ADMIN_CATEG = %w(Weekly Sales Employee Projects Profit&Loss Expenses Bussiness_Propect Technology_Propect Resource_Demand).freeze
-  CEO_CATEG = %w(Weekly Sales Employee Projects Profit&Loss Expenses Bussiness_Propect).freeze
-  MANAGER_CATEG = %w(Profit&Loss Expenses Bussiness_Propect Technology_Propect).freeze
-  STAFF_CATEG = %w(Expenses Bussiness_Propect Technology_Propect Resource_Demand).freeze
+  ADMIN_CATEG = %w(Weekly Sales Employee Projects Profit&Loss Expenses Bussiness_Prospect Technology_Prospect Resource_Demand).freeze
+  CEO_CATEG = %w(Weekly Sales Employee Projects Profit&Loss Expenses Bussiness_Prospect).freeze
+  MANAGER_CATEG = %w(Profit&Loss Expenses Bussiness_Prospect Technology_Prospect).freeze
+  STAFF_CATEG = %w(Expenses Bussiness_Prospect Technology_Prospect Resource_Demand).freeze
 end

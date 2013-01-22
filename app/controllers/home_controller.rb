@@ -116,10 +116,10 @@ class HomeController < ApplicationController
   when "Expenses"
   @yaxis_unit = 'Amount'
   @yaxis_sub  = ''
-  when "Bussiness Propect"
+  when "Bussiness Prospect"
   @yaxis_unit = 'No of Bussiness'
   @yaxis_sub = ''
-  when "Technology Propect"
+  when "Technology Prospect"
   @yaxis_unit = 'No of Technology'
   @yaxis_sub = ''
   else
